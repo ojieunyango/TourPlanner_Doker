@@ -22,8 +22,8 @@ export const DEFAULT_AUTOCOMPLETE_OPTIONS = {
     'photos',
     'rating',
     'types'
-  ]
-} as const;
+  ] 
+};
 
 export interface GooglePlaceResult {
   place_id: string;

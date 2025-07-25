@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useEffect, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { Autocomplete } from '@react-google-maps/api';
 import { 
   TextField, 
@@ -63,15 +63,7 @@ const MapSearchBox: React.FC<MapSearchBoxProps> = ({
     // Autocomplete 옵션 설정
     autocomplete.setOptions({
       ...DEFAULT_AUTOCOMPLETE_OPTIONS,
-      fields: [
-        'place_id',
-        'name', 
-        'formatted_address',
-        'geometry',
-        'photos',
-        'rating',
-        'types'
-      ]
+      types: ["establishment", "geocode"] as string[],
     });
     
     console.log('Autocomplete 로드 완료');
@@ -177,16 +169,7 @@ const MapSearchBox: React.FC<MapSearchBoxProps> = ({
       const service = new google.maps.places.PlacesService(document.createElement('div'));
       
       const request: google.maps.places.TextSearchRequest = {
-        query: searchValue,
-        fields: [
-          'place_id',
-          'name',
-          'formatted_address',
-          'geometry',
-          'photos',
-          'rating',
-          'types'
-        ]
+        query: searchValue
       };
       
       service.textSearch(request, (results, status) => {

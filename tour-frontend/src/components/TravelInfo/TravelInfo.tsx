@@ -15,10 +15,10 @@ import {
 import { Save } from '@mui/icons-material';
 import { TourType } from '../../types/travel';
 import { useTravelStore } from '../../store/travelStore';
-import { validateTour, validateDateRange } from '../../utils/validate';
+import { validateDateRange } from '../../utils/validate';
 
 export const TravelInfo: React.FC = () => {
-  const { currentTour, updateTourInfo, saveTourToBackend, isLoading, error } = useTravelStore();
+  const { currentTour, updateTourInfo, saveTourToBackend, error } = useTravelStore();
   const [saveStatus, setSaveStatus] = React.useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
 
   // 컴포넌트 마운트 시 기본 투어 정보 초기화
@@ -44,15 +44,15 @@ export const TravelInfo: React.FC = () => {
   };
 
   // 전체 여행 정보 검증
-  const validateTourInfo = (): string | null => {
-    if (!currentTour) return null;
-    const result = validateTour(currentTour);
-    return result.isValid ? null : result.message || null;
-  };
+  // const validateTourInfo = (): string | null => {
+  //   if (!currentTour) return null;
+  //   const result = validateTour(currentTour);
+  //   return result.isValid ? null : result.message || null;
+  // };
 
   const dateError = currentTour ? validateDates(currentTour.startDate, currentTour.endDate) : null;
 
-  const handleInputChange = (field: keyof TourType, value: any) => {
+  const handleInputChange = (field: keyof TourType, value: unknown) => {
     updateTourInfo({ [field]: value });
   };
 

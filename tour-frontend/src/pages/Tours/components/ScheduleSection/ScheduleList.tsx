@@ -171,7 +171,7 @@ const ScheduleItem: React.FC<{
 
 const ScheduleList: React.FC = () => {
   const { schedules, selectedDate } = useTravelState();
-  const { reorderSchedules, updateSchedule } = useTravelActions();
+  const { updateSchedule } = useTravelActions();
   
   // 수정 모달 상태 관리
   const [editModalOpen, setEditModalOpen] = useState(false);

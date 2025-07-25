@@ -1,6 +1,6 @@
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
-import { TourType, ScheduleItemDto, WeatherItemDto } from '../../types/travel';
+import { TourType, ScheduleItemDto } from '../../types/travel';
 import {
   generatePDFFileName,
   formatDate,

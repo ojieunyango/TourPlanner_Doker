@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef, useEffect } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import {
   Box,
   Drawer,
@@ -13,10 +13,8 @@ import {
   Button,
   IconButton,
   Chip,
-  CircularProgress,
   Alert,
   TextField,
-  InputAdornment,
   FormControl,
   InputLabel,
   Select,
@@ -47,6 +45,7 @@ import { searchTransitRoutes } from "./MapsComponent/RouteSearchService";
 // 어제 작업한 타입들 import
 import { LocationData, RouteResult } from "../../types/travel";
 import { useTravelStore } from "../../store/travelStore";
+import { GooglePlaceResult } from "../../types/googleMaps";
 
 // Google Places API 응답을 위한 타입 (Maps.tsx 내부 사용)
 interface SearchResult {
@@ -67,8 +66,8 @@ const Maps: React.FC = () => {
   // 상태 관리
   // ========================
   const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
-  const [isSearching, setIsSearching] = useState<boolean>(false);
-  const [searchError, setSearchError] = useState<string>("");
+  // const [isSearching, setIsSearching] = useState<boolean>(false);
+  const [searchError] = useState<string>("");
   const [isSearchResultsOpen, setIsSearchResultsOpen] =
     useState<boolean>(false);
 
@@ -241,7 +240,21 @@ const Maps: React.FC = () => {
       // **Zustand store도 업데이트 (날씨 연동을 위해)**
       const googlePlace = convertLocationDataToGooglePlace(location);
       console.log("Maps: Zustand store에 업데이트할 GooglePlace:", googlePlace);
-      setStoreSelectedLocation(googlePlace);
+      if (googlePlace.place_id) {
+        const convertedPlace: GooglePlaceResult = {
+          place_id: googlePlace.place_id,
+          name: googlePlace.name ?? '',
+          formatted_address: "",
+          geometry: {
+            location: {
+              lat: 0,
+              lng: 0
+            }
+          },
+          types: []
+        };
+        setStoreSelectedLocation(convertedPlace);
+      }
 
       // **지도 중심을 선택된 장소로 이동**
       setMapCenter({
@@ -345,7 +358,21 @@ const Maps: React.FC = () => {
 
       // **Zustand store도 업데이트 (날씨 연동을 위해)**
       const googlePlace = convertLocationDataToGooglePlace(locationData);
-      setStoreSelectedLocation(googlePlace);
+      if (googlePlace.place_id) {
+        const convertedPlace: GooglePlaceResult = {
+          place_id: googlePlace.place_id,
+          name: googlePlace.name ?? '',
+          formatted_address: "",
+          geometry: {
+            location: {
+              lat: 0,
+              lng: 0
+            }
+          },
+          types: []
+        };
+        setStoreSelectedLocation(convertedPlace);
+      }
 
       // **검색 결과 선택 시도 지도 중심 이동**
       setMapCenter({

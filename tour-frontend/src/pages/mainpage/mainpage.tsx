@@ -1,11 +1,12 @@
-import { Box, Typography, Button, Card, CardHeader, CardContent } from "@mui/material";
+import { Box, Typography, Card, CardHeader, CardContent } from "@mui/material";
 import { Link } from "react-router-dom";
 import { styled } from "@mui/system";
 
 export default function MainPage() {
 
   // styled Box로 Hero 배경 장식 구현
-  const HeroSection = styled(Box)(({ theme }) => ({
+  // eslint-disable-next-line no-empty-pattern
+  const HeroSection = styled(Box)(({ }) => ({
     position: "relative",
     display: "flex",
     flexDirection: "column",
@@ -97,12 +98,12 @@ export default function MainPage() {
             cursor: "pointer"
           }}
           onMouseEnter={(e) => {
-            e.target.style.backgroundColor = "#fff";
-            e.target.style.color = "#63a7eb";
+            (e.target as HTMLAnchorElement).style.backgroundColor = "#fff";
+            (e.target as HTMLAnchorElement).style.color = "#63a7eb";
           }}
           onMouseLeave={(e) => {
-            e.target.style.backgroundColor = "#63a7eb";
-            e.target.style.color = "#fff";
+            (e.target as HTMLAnchorElement).style.backgroundColor = "#63a7eb";
+            (e.target as HTMLAnchorElement).style.color = "#fff";
           }}
         >
           여행 계획 시작하기

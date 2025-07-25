@@ -33,7 +33,7 @@ export interface ScheduleItemDto {
   locationData?: LocationDataDto;
   trafficData?: TrafficDataDto;
    // ⬇️ 프론트에서만 쓰는 필드 (백엔드 저장 안됨)
-   order?: number;
+  order?: number;
 }
 
 // 백엔드 LocationDataDto와 일치하는 구조

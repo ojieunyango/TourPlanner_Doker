@@ -15,7 +15,6 @@ import {
 } from '@mui/material';
 import { 
   PictureAsPdf, 
-  Download, 
   DateRange, 
   CalendarToday,
   Preview
@@ -91,7 +90,7 @@ const ActionButtons = () => {
   
   const [pdfMenuAnchor, setPdfMenuAnchor] = useState<null | HTMLElement>(null);
   const [previewOpen, setPreviewOpen] = useState(false);
-  const [selectedDate, setSelectedDate] = useState<string | null>(null);
+  // const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [saveStatus, setSaveStatus] = React.useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
   
   // 🆕 프론트엔드 데이터를 백엔드 TourType 구조로 변환

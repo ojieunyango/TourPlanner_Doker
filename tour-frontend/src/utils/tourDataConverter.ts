@@ -1,9 +1,7 @@
 import { 
   TourType, 
   TravelPlanDto, 
-  ScheduleItemDto, 
-  LocationDataDto, 
-  TrafficDataDto,
+  ScheduleItemDto,
   WeatherItemDto,
   PlanMetadataDto, 
   MapEntityType, 

@@ -140,7 +140,7 @@ const parseDirectionsResult = (
       const transfers = Math.max(0, transitSteps.length - 1);
 
       // 예상 요금 계산 (한국 기준 추정)
-      const estimatedPrice = calculateEstimatedFare(routeSteps, transfers);
+      const estimatedPrice = calculateEstimatedFare(routeSteps);
 
       const routeResult: RouteResult = {
         departure: request.departure.name,
@@ -233,7 +233,7 @@ const parseTransitSteps = (steps: google.maps.DirectionsStep[]): RouteStep[] => 
  * 
  * 주의: Google API에서 정확한 요금을 제공하지 않으므로 추정값
  */
-const calculateEstimatedFare = (steps: RouteStep[], transfers: number): number => {
+const calculateEstimatedFare = (steps: RouteStep[]): number => {
   if (steps.length === 0) return 0;
 
   // 한국 대중교통 기본요금 (카드 기준, 2024년 기준)

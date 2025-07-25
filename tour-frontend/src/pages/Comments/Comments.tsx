@@ -117,7 +117,11 @@ const Comments: React.FC<CommentsProps> = ({ threadId }) => {
     if (!confirmed) return;
 
     try {
-      await deleteComment(commentId);
+      if (user) {
+        await deleteComment(commentId, user.userId);
+      } else {
+        console.error('User is not logged in.');
+      }
       await fetchComments();
     } catch (error) {
       console.error('댓글 삭제 실패:', error);

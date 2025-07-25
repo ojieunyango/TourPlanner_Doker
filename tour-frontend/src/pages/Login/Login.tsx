@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Box, Typography, TextField, Button, Alert } from '@mui/material';
 import { login } from '../../services/userApi';
-import { LoginRequest } from '../../types/user';
+import { LoginRequest, User } from '../../types/user';
 import { AuthContext } from '../../context/AuthContext';
 
 interface LoginProps {
@@ -49,12 +49,24 @@ export const Login: React.FC<LoginProps> = ({ onSuccess, onSwitchToSignup }) => 
       alert("로그인 되었습니다.");
       console.log("로그인 성공:", response);
       
-      authLogin(response.token, response);
+      const user: User = {
+        userId: response.userId,
+        username: response.username,
+        role: response.role === 'ADMIN' ? 'ADMIN' : 'USER',
+        name: '',
+        email: '',
+        createDate: ''
+      };
+      authLogin(response.token, user);
       setFormData({ username: '', password: '' });
       onSuccess?.();
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("로그인 실패:", error);
-      setError(error.message);
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError('An unknown error occurred.');
+      }
     } finally {
       setLoading(false);
     }

@@ -3,14 +3,11 @@ import { devtools } from 'zustand/middleware';
 import {
   TourType,
   ScheduleItemDto,
-  TravelPlanDto,
-  ScheduleType,
   MapEntityType,
   TrafficType,
   WeatherType,
   RouteResult,
   LocationData,
-  VehicleData
 } from '../types/travel';
 import { GooglePlaceResult } from '../types/googleMaps';
 import { convertTourToBackendFormat, convertTourFromBackendFormat } from '../utils/tourDataConverter';
@@ -115,155 +112,155 @@ interface TravelActions {
   createNewTourInBackend: (userId: number) => Promise<TourType | null>;
 }
 
-// 샘플 데이터
-const sampleData = {
-  tour: {
-    tourId: 1,
-    title: "서울 2박 3일 여행",
-    startDate: "2025-07-15",
-    endDate: "2025-07-17",
-    travelers: 2,
-    budget: 'medium'
-  },
-  schedules: [
-    {
-      scheduleId: "1",
-      tourId: 1,
-      title: "경복궁 관람",
-      content: "조선 왕조의 정궁, 근정전과 경회루 관람",
-      date: "2025-07-15",
-      startTime: "09:00",
-      endTime: "11:00",
-      memo: "예전 메모 예시"
-    },
-    {
-      scheduleId: "2",
-      tourId: 1,
-      title: "지하철 3호선 이용",
-      content: "경복궁역 → 안국역, 5분 소요",
-      date: "2025-07-15",
-      startTime: "11:15",
-      endTime: "11:20",
-      memo: "예전 메모 예시"
-    },
-    {
-      scheduleId: "3",
-      tourId: 1,
-      title: "북촌한옥마을 산책",
-      content: "전통 한옥의 아름다움과 서울 전경 감상",
-      date: "2025-07-15",
-      startTime: "11:30",
-      endTime: "13:00",
-      memo: "예전 메모 예시"
-    },
-    {
-      scheduleId: "4",
-      tourId: 1,
-      title: "명동 맛집 탐방",
-      content: "명동교자 본점에서 만두 점심",
-      date: "2025-07-15",
-      startTime: "14:00",
-      endTime: "15:30",
-      memo: "예전 메모 예시"
-    },
-    {
-      scheduleId: "5",
-      tourId: 1,
-      title: "남산타워 관광",
-      content: "서울의 야경 감상",
-      date: "2025-07-15",
-      startTime: "18:00",
-      endTime: "20:00",
-      memo: "예전 메모 예시"
-    }
-  ],
-  mapEntities: [
-    {
-      mapId: 1,
-      scheduleId: "1",
-      tourId: 1,
-      location: JSON.stringify({
-        name: "경복궁",
-        address: "서울특별시 종로구 사직로 161",
-        coordinates: { lat: 37.5796, lng: 126.9770 },
-        placeId: "ChIJzRz3K2WIFTER4Dl0Zw8Uy6E",
-        link: "https://maps.google.com/?cid=경복궁",
-        rating: 4.3,
-        photoUrl: "https://example.com/photo1.jpg"
-      })
-    },
-    {
-      mapId: 3,
-      scheduleId: "3",
-      tourId: 1,
-      location: JSON.stringify({
-        name: "북촌한옥마을",
-        address: "서울특별시 종로구 계동길 37",
-        coordinates: { lat: 37.5816, lng: 126.9839 },
-        placeId: "ChIJ12345example",
-        link: "https://maps.google.com/?cid=북촌한옥마을",
-        rating: 4.1,
-        photoUrl: "https://example.com/photo2.jpg"
-      })
-    },
-    {
-      mapId: 4,
-      scheduleId: "4",
-      tourId: 1,
-      location: JSON.stringify({
-        name: "명동교자 본점",
-        address: "서울특별시 중구 명동10길 29",
-        coordinates: { lat: 37.5618, lng: 126.9852 },
-        placeId: "ChIJ67890example",
-        link: "https://maps.google.com/?cid=명동교자",
-        rating: 4.0,
-        photoUrl: "https://example.com/photo3.jpg"
-      })
-    },
-    {
-      mapId: 5,
-      scheduleId: "5",
-      tourId: 1,
-      location: JSON.stringify({
-        name: "N서울타워",
-        address: "서울특별시 용산구 남산공원길 105",
-        coordinates: { lat: 37.5512, lng: 126.9882 },
-        placeId: "ChIJabcdefexample",
-        link: "https://maps.google.com/?cid=남산타워",
-        rating: 4.2,
-        photoUrl: "https://example.com/photo4.jpg"
-      })
-    }
-  ],
-  trafficData: [
-    {
-      trafficId: 2,
-      tourId: 1,
-      vehicle: JSON.stringify({
-        mode: 'TRANSIT',
-        steps: [
-          {
-            mode: 'SUBWAY',
-            line: '지하철 3호선',
-            departure: '경복궁역',
-            arrival: '안국역',
-            departureTime: '11:15',
-            arrivalTime: '11:20'
-          }
-        ],
-        totalDuration: '5분',
-        transfers: 0,
-        departure: '경복궁역',
-        destination: '안국역'
-      }),
-      spendTime: '2025-07-15T11:15:00.000Z',
-      price: 1500,
-      departureTime: '11:15',
-      arrivalTime: '11:20',
-      route: '지하철 3호선 (경복궁역 → 안국역)'
-    }
-  ]
-};
+// // 샘플 데이터
+// const sampleData = {
+//   tour: {
+//     tourId: 1,
+//     title: "서울 2박 3일 여행",
+//     startDate: "2025-07-15",
+//     endDate: "2025-07-17",
+//     travelers: 2,
+//     budget: 'medium' as const
+//   },
+//   schedules: [
+//     {
+//       scheduleId: "1",
+//       tourId: 1,
+//       title: "경복궁 관람",
+//       content: "조선 왕조의 정궁, 근정전과 경회루 관람",
+//       date: "2025-07-15",
+//       startTime: "09:00",
+//       endTime: "11:00",
+//       memo: "예전 메모 예시"
+//     },
+//     {
+//       scheduleId: "2",
+//       tourId: 1,
+//       title: "지하철 3호선 이용",
+//       content: "경복궁역 → 안국역, 5분 소요",
+//       date: "2025-07-15",
+//       startTime: "11:15",
+//       endTime: "11:20",
+//       memo: "예전 메모 예시"
+//     },
+//     {
+//       scheduleId: "3",
+//       tourId: 1,
+//       title: "북촌한옥마을 산책",
+//       content: "전통 한옥의 아름다움과 서울 전경 감상",
+//       date: "2025-07-15",
+//       startTime: "11:30",
+//       endTime: "13:00",
+//       memo: "예전 메모 예시"
+//     },
+//     {
+//       scheduleId: "4",
+//       tourId: 1,
+//       title: "명동 맛집 탐방",
+//       content: "명동교자 본점에서 만두 점심",
+//       date: "2025-07-15",
+//       startTime: "14:00",
+//       endTime: "15:30",
+//       memo: "예전 메모 예시"
+//     },
+//     {
+//       scheduleId: "5",
+//       tourId: 1,
+//       title: "남산타워 관광",
+//       content: "서울의 야경 감상",
+//       date: "2025-07-15",
+//       startTime: "18:00",
+//       endTime: "20:00",
+//       memo: "예전 메모 예시"
+//     }
+//   ],
+//   mapEntities: [
+//     {
+//       mapId: 1,
+//       scheduleId: "1",
+//       tourId: 1,
+//       location: JSON.stringify({
+//         name: "경복궁",
+//         address: "서울특별시 종로구 사직로 161",
+//         coordinates: { lat: 37.5796, lng: 126.9770 },
+//         placeId: "ChIJzRz3K2WIFTER4Dl0Zw8Uy6E",
+//         link: "https://maps.google.com/?cid=경복궁",
+//         rating: 4.3,
+//         photoUrl: "https://example.com/photo1.jpg"
+//       })
+//     },
+//     {
+//       mapId: 3,
+//       scheduleId: "3",
+//       tourId: 1,
+//       location: JSON.stringify({
+//         name: "북촌한옥마을",
+//         address: "서울특별시 종로구 계동길 37",
+//         coordinates: { lat: 37.5816, lng: 126.9839 },
+//         placeId: "ChIJ12345example",
+//         link: "https://maps.google.com/?cid=북촌한옥마을",
+//         rating: 4.1,
+//         photoUrl: "https://example.com/photo2.jpg"
+//       })
+//     },
+//     {
+//       mapId: 4,
+//       scheduleId: "4",
+//       tourId: 1,
+//       location: JSON.stringify({
+//         name: "명동교자 본점",
+//         address: "서울특별시 중구 명동10길 29",
+//         coordinates: { lat: 37.5618, lng: 126.9852 },
+//         placeId: "ChIJ67890example",
+//         link: "https://maps.google.com/?cid=명동교자",
+//         rating: 4.0,
+//         photoUrl: "https://example.com/photo3.jpg"
+//       })
+//     },
+//     {
+//       mapId: 5,
+//       scheduleId: "5",
+//       tourId: 1,
+//       location: JSON.stringify({
+//         name: "N서울타워",
+//         address: "서울특별시 용산구 남산공원길 105",
+//         coordinates: { lat: 37.5512, lng: 126.9882 },
+//         placeId: "ChIJabcdefexample",
+//         link: "https://maps.google.com/?cid=남산타워",
+//         rating: 4.2,
+//         photoUrl: "https://example.com/photo4.jpg"
+//       })
+//     }
+//   ],
+//   trafficData: [
+//     {
+//       trafficId: 2,
+//       tourId: 1,
+//       vehicle: JSON.stringify({
+//         mode: 'TRANSIT',
+//         steps: [
+//           {
+//             mode: 'SUBWAY',
+//             line: '지하철 3호선',
+//             departure: '경복궁역',
+//             arrival: '안국역',
+//             departureTime: '11:15',
+//             arrivalTime: '11:20'
+//           }
+//         ],
+//         totalDuration: '5분',
+//         transfers: 0,
+//         departure: '경복궁역',
+//         destination: '안국역'
+//       }),
+//       spendTime: '2025-07-15T11:15:00.000Z',
+//       price: 1500,
+//       departureTime: '11:15',
+//       arrivalTime: '11:20',
+//       route: '지하철 3호선 (경복궁역 → 안국역)'
+//     }
+//   ]
+// };
 
 // 초기 상태
 const initialState: TravelState = {
@@ -485,7 +482,8 @@ export const useTravelStore = create<TravelState & TravelActions>()(
 
       // MapEntity 관련 액션
       addLocationToSchedule: (location, scheduleData = {}) => {
-        let { currentTour, selectedDate, schedules } = get();
+        let currentTour = get().currentTour;
+        const { selectedDate, schedules } = get();
         
         // currentTour가 없으면 기본 투어 생성
         if (!currentTour) {
@@ -571,7 +569,8 @@ export const useTravelStore = create<TravelState & TravelActions>()(
 
       // Traffic 관련 액션
       addRouteToSchedule: (route, scheduleData = {}) => {
-        let { currentTour, selectedDate, schedules } = get();
+        let currentTour = get().currentTour;
+        const { selectedDate, schedules } = get();
         
         // currentTour가 없으면 기본 투어 생성
         if (!currentTour) {
@@ -701,18 +700,21 @@ export const useTravelStore = create<TravelState & TravelActions>()(
           'resetTravelData'
         ),
 
-      // 테스트용 샘플 데이터 로드
-      loadSampleData: () =>
-        set(
-          {
-            currentTour: sampleData.tour,
-            schedules: sampleData.schedules,
-            mapEntities: sampleData.mapEntities,
-            trafficData: sampleData.trafficData,
-          },
-          false,
-          'loadSampleData'
-        ),
+      // // 테스트용 샘플 데이터 로드
+      // loadSampleData: () =>
+      //   set(
+      //     {
+      //       currentTour: sampleData.tour,
+      //       schedules: sampleData.schedules,
+      //       mapEntities: sampleData.mapEntities,
+      //       trafficData: sampleData.trafficData.map((traffic) => ({
+      //         ...traffic,
+      //         scheduleId: traffic.scheduleId || '',
+      //       })),
+      //     },
+      //     false,
+      //     'loadSampleData'
+      //   ),
 
       // 백엔드 연동 액션들
       saveTourToBackend: async () => {
@@ -802,12 +804,12 @@ export const useTravelStore = create<TravelState & TravelActions>()(
           console.error('여행 계획 저장 실패:', error);
           
           // Axios 에러 상세 정보 추출
-          if (error && typeof error === 'object' && 'response' in error) {
-            const axiosError = error as any;
-            console.error('백엔드 응답:', axiosError.response?.data);
-            console.error('상태 코드:', axiosError.response?.status);
-            console.error('요청 데이터:', axiosError.config?.data);
-          }
+          // if (error && typeof error === 'object' && 'response' in error) {
+          //   const axiosError = error as any;
+          //   console.error('백엔드 응답:', axiosError.response?.data);
+          //   console.error('상태 코드:', axiosError.response?.status);
+          //   console.error('요청 데이터:', axiosError.config?.data);
+          // }
           
           set(
             {

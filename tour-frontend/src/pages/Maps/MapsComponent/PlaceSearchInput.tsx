@@ -8,7 +8,6 @@ import {
   List,
   ListItem,
   ListItemButton,
-  ListItemText,
   ListItemIcon,
   Paper,
   CircularProgress,
@@ -20,7 +19,6 @@ import {
   Search as SearchIcon,
   Clear as ClearIcon,
   LocationOn as LocationOnIcon,
-  MyLocation as MyLocationIcon
 } from '@mui/icons-material';
 import { LocationData } from '../../../types/travel';
 import { convertPlaceToLocationData } from '../../../utils/travelUtils';
@@ -84,7 +82,7 @@ const PlaceSearchInput: React.FC<PlaceSearchInputProps> = ({
   const autocompleteServiceRef = useRef<google.maps.places.AutocompleteService | null>(null);
   
   // 디바운싱을 위한 타이머
-  const predictionsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const predictionsTimeoutRef = useRef<number | null>(null);
 
   /**
    * Autocomplete Service 초기화
@@ -401,7 +399,7 @@ const PlaceSearchInput: React.FC<PlaceSearchInputProps> = ({
             >
               <Paper elevation={8} sx={{ mt: 1, maxHeight: 300, overflow: 'auto' }}>
                 <List dense>
-                  {predictions.map((prediction, index) => (
+                  {predictions.map((prediction) => (
                     <ListItem key={prediction.placeId} disablePadding>
                       <ListItemButton
                         onClick={() => handleSelectPrediction(prediction)}

@@ -31,7 +31,7 @@ import {
   AccessTime,
   Today,
 } from '@mui/icons-material';
-import { useTravelStore, useTravelState, useTravelActions } from '../../store/travelStore';
+import { useTravelState, useTravelActions } from '../../store/travelStore';
 import { ScheduleItemDto, MapEntityType, TrafficType, LocationData, VehicleData } from '../../types/travel';
 
 interface ScheduleItemProps {

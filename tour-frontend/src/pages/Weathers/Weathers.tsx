@@ -13,7 +13,6 @@ import {
   Error as ErrorIcon,
   Refresh as RefreshIcon
 } from '@mui/icons-material';
-import { WeatherType } from '../../types/travel';
 import { useTravelStore } from '../../store/travelStore';
 import { getWeatherForecast, WeatherAPIError } from '../../services/weatherService';
 
@@ -42,9 +41,7 @@ interface WeathersProps {
  * - 실시간 데이터로 정확한 날씨 정보 제공
  */
 const Weathers: React.FC<WeathersProps> = ({ 
-  location = null, 
-  compact = true 
-}) => {
+  location = null}) => {
   // Zustand store 상태
   const { selectedLocation, weatherData, setWeatherData } = useTravelStore();
   
@@ -72,8 +69,8 @@ const Weathers: React.FC<WeathersProps> = ({
     
     if (selectedLocation?.geometry?.location) {
       return {
-        lat: selectedLocation.geometry.location.lat(),
-        lng: selectedLocation.geometry.location.lng(),
+        lat: selectedLocation.geometry.location.lat,
+        lng: selectedLocation.geometry.location.lng,
         name: selectedLocation.name || selectedLocation.formatted_address || '선택된 위치'
       };
     }
@@ -331,7 +328,7 @@ const Weathers: React.FC<WeathersProps> = ({
           alignItems: 'stretch'
         }}
       >
-        {weatherData.slice(0, 5).map((weather, index) => {
+        {weatherData.slice(0, 5).map((weather) => {
           const isTodayWeather = isToday(weather.date);
           
           return (

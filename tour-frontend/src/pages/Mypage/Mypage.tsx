@@ -16,7 +16,6 @@ import {
 } from "../../services/userApi";
 import { UserResponse, UserUpdateRequest } from "../../types/user";
 import { AuthContext } from "../../context/AuthContext";
-import { CenterFocusStrong } from "@mui/icons-material";
 import { getLikedThreads } from "../../services/userApi";
 import { Thread } from "../../types/thread";
 import { useNavigate } from "react-router-dom";

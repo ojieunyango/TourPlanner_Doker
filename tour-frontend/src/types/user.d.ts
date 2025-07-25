@@ -6,6 +6,7 @@ export interface LoginRequest {
 }
 // 로그인 응답 (토큰 포함)
 export interface JwtResponse {
+  role: string;
   token: string;
   userId: number;
   username: string;

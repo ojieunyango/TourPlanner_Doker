@@ -5,7 +5,6 @@ import {
   Button, 
   List, 
   ListItem, 
-  ListItemText, 
   ListItemSecondaryAction,
   Chip,
   Alert,
@@ -59,19 +58,19 @@ const TransportSection: React.FC = () => {
   }, []);
 
   // localStorage에 교통편 저장
-  const saveRoute = (route: Omit<SavedRoute, 'id' | 'savedAt'>) => {
-    const newRoute: SavedRoute = {
-      ...route,
-      id: `route_${Date.now()}`,
-      savedAt: new Date().toISOString()
-    };
+  // const saveRoute = (route: Omit<SavedRoute, 'id' | 'savedAt'>) => {
+  //   const newRoute: SavedRoute = {
+  //     ...route,
+  //     id: `route_${Date.now()}`,
+  //     savedAt: new Date().toISOString()
+  //   };
 
-    const updatedRoutes = [newRoute, ...savedRoutes];
-    setSavedRoutes(updatedRoutes);
-    localStorage.setItem('savedRoutes', JSON.stringify(updatedRoutes));
+  //   const updatedRoutes = [newRoute, ...savedRoutes];
+  //   setSavedRoutes(updatedRoutes);
+  //   localStorage.setItem('savedRoutes', JSON.stringify(updatedRoutes));
     
-    console.log('교통편 저장됨:', newRoute);
-  };
+  //   console.log('교통편 저장됨:', newRoute);
+  // };
 
   // 저장된 교통편 삭제
   const deleteRoute = (routeId: string) => {

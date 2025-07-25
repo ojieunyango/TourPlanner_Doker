@@ -4,7 +4,7 @@ import AuthProvider from "./context/AuthProvider";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import MainPage from "./pages/mainpage/mainpage";
 import Tour from "./pages/Tours/Tours";
 import TourList from "./pages/TourList/TourList";

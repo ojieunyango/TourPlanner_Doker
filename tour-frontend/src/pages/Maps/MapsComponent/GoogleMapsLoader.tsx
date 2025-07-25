@@ -6,7 +6,7 @@ import { Box, CircularProgress, Alert } from '@mui/material';
 /**
  * Google Maps API 로드에 필요한 라이브러리들
  */
-const GOOGLE_MAPS_LIBRARIES: ("places" | "drawing" | "geometry" | "localContext" | "visualization")[] = [
+const GOOGLE_MAPS_LIBRARIES: ("places" | "drawing" | "geometry" | "visualization")[] = [
   'places' // Places API (검색, 자동완성)
 ];
 

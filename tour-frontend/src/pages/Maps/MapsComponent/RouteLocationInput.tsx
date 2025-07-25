@@ -15,7 +15,6 @@ import {
   Typography,
   Popper,
   ClickAwayListener,
-  Button,
   Menu,
   MenuItem
 } from '@mui/material';
@@ -89,7 +88,7 @@ const RouteLocationInput: React.FC<RouteLocationInputProps> = ({
   const anchorRef = useRef<HTMLDivElement>(null);
   
   // 디바운싱을 위한 타이머
-  const searchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const searchTimeoutRef = useRef<number | null>(null);
 
   /**
    * 장소 검색 실행 (구글맵 스타일)
@@ -489,7 +488,7 @@ const RouteLocationInput: React.FC<RouteLocationInputProps> = ({
             >
               <Paper elevation={8} sx={{ mt: 1, maxHeight: 300, overflow: 'auto' }}>
                 <List dense>
-                  {internalSearchResults.map((item, index) => (
+                  {internalSearchResults.map((item) => (
                     <ListItem key={item.placeId} disablePadding>
                       <ListItemButton
                         onClick={() => handleSelectPlace(item)}

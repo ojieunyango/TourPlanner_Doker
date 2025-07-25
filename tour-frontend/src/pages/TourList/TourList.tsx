@@ -6,7 +6,6 @@ import {
   CardContent,
   CardActions,
   Button,
-  Grid,
   Chip,
   IconButton,
   Dialog,
@@ -20,8 +19,8 @@ import {
   MenuItem,
   ListItemIcon,
   ListItemText,
-  Container,
 } from "@mui/material";
+import Grid from "@mui/material/Grid";
 import {
   Add as AddIcon,
   Edit as EditIcon,
@@ -39,7 +38,7 @@ import { tourAPI } from "../../services/tourApi";
 
 const TourList: React.FC = () => {
   const navigate = useNavigate();
-  const { isLoading, error, currentTour } = useTravelStore();
+  const { isLoading, error } = useTravelStore();
 
   const {
     loadUserToursFromBackend,
@@ -328,7 +327,13 @@ const TourList: React.FC = () => {
       ) : (
         <Grid container spacing={3}>
           {tours.map((tour) => (
-            <Grid item xs={12} sm={6} lg={4} key={tour.tourId}>
+            <Box 
+            sx={{ 
+              width: { xs: '100%', sm: '50%', lg: '33.33%' },
+              padding: 1 
+            }} 
+            key={tour.tourId}
+          >
               <Card
                 sx={{
                   height: "100%",
@@ -442,7 +447,7 @@ const TourList: React.FC = () => {
                   </Button>
                 </CardActions>
               </Card>
-            </Grid>
+            </Box>
           ))}
         </Grid>
       )}
@@ -560,7 +565,7 @@ const TourList: React.FC = () => {
             onChange={(e) =>
               setEditForm((prev) => ({
                 ...prev,
-                budget: e.target.value as any,
+                budget: e.target.value as "low" | "medium" | "high" | "luxury",
               }))
             }
           >

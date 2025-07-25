@@ -4,24 +4,17 @@ import {
   LocationData, 
   VehicleData,  
   ScheduleItemDto,
-  MapEntityType, 
-  TrafficType 
 } from '../types/travel';
-import { GooglePlaceResult } from '../types/googleMaps';
 
 /**
  * Google Place Result를 LocationData로 변환
  * Google Maps API에서 반환하는 실제 PlaceResult 타입을 처리
  */
 export const convertPlaceToLocationData = (place: google.maps.places.PlaceResult): LocationData => {
-  // 좌표 처리 - Google API는 함수로 좌표를 반환
-  const lat = typeof place.geometry?.location?.lat === 'function' 
-    ? place.geometry.location.lat() 
-    : (place.geometry?.location as any)?.lat || 0;
-    
-  const lng = typeof place.geometry?.location?.lng === 'function'
-    ? place.geometry.location.lng()
-    : (place.geometry?.location as any)?.lng || 0;
+  const location = place.geometry?.location as google.maps.LatLng | undefined;
+
+  const lat = location?.lat() ?? 0;
+  const lng = location?.lng() ?? 0;
 
   return {
     name: place.name || '',
@@ -32,10 +25,11 @@ export const convertPlaceToLocationData = (place: google.maps.places.PlaceResult
       lat,
       lng,
     },
-    photoUrl: place.photos?.[0]?.getUrl({ maxWidth: 400 }) || undefined,
-    rating: place.rating || undefined,
+    photoUrl: place.photos?.[0]?.getUrl({ maxWidth: 400 }),
+    rating: place.rating,
   };
 };
+
 
 /**
  * LocationData JSON 문자열을 파싱
@@ -275,7 +269,7 @@ export const suggestNextAvailableTime = (
 /**
  * 로컬 스토리지에 임시 저장
  */
-export const saveTempData = (key: string, data: any): void => {
+export const saveTempData = (key: string, data: unknown): void => {
   try {
     localStorage.setItem(`travel_temp_${key}`, JSON.stringify(data));
   } catch (error) {

@@ -38,7 +38,7 @@ Docker version 28.3.2, build 578ccf6
 - 확인 명령어
     - docker image ls
 - 컨테이너 실행 명령어
-- docker run --name cardb -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_DATABASE=cardb mariadb
+- docker run --name tourdb -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_DATABASE=tourdb mariadb
 - 현재까지의 범위가 뭐냐면 DB와 관련된 컨테이너 실행 및 실행한 겁니다
 - run -> 실행 명령어
 - 이상까지가 DB의 실행과 관련이 있습니다.
@@ -72,7 +72,7 @@ ENTRYPOINT ["java", "-jar", "/app.jar"]
 5. ENTRYPOINT : 도커 컨테이너가 실행하는 명령 라인 argument를 의미합니다.
 
 이제 도커를 빌드하는 과정을 거칠겁니다.
-docker build -t carbackend .
+docker build -t carbackend . 
 
 docker build : Docker 이미지를 빌드하는 명령어
 -t carbackend : 빌드된 이미지에 carbackend라는 이름을 명시합니다.
