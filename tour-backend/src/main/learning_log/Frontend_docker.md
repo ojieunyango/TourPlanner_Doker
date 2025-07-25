@@ -87,3 +87,11 @@ SHOW databases;
 
 USE cardb;
 이후에는 sql문으로 데이터 CRUD가 가능합니다.
+예시 -> select * from app_user;
+
+나가는거
+exit 엔터
+
+
+
+

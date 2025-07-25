@@ -72,7 +72,7 @@ ENTRYPOINT ["java", "-jar", "/app.jar"]
 5. ENTRYPOINT : 도커 컨테이너가 실행하는 명령 라인 argument를 의미합니다.
 
 이제 도커를 빌드하는 과정을 거칠겁니다.
-docker build -t carbackend . 
+docker build -t tourbackend .
 
 docker build : Docker 이미지를 빌드하는 명령어
 -t carbackend : 빌드된 이미지에 carbackend라는 이름을 명시합니다.
@@ -138,7 +138,7 @@ test 단계에서 작성한 부분이 오류가 발생합니다.
 
 이상의 명령어를 통해 .jar 파일이 만들어졌기 때문에
 이를 기준으로 빌드합니다
-docker build -t carbackend .
+docker build -t tourbackend .
 
 docker image ls
 ```
@@ -157,7 +157,7 @@ docker rm carapp
 2. 실패한 앱 컨테이너 삭제
    docker rm carapp
 3. 앱 컨테이너 재실행
-   docker run -d -p 8080:8080 --name carapp --link cardb:mariadb carbackend
+   docker run -d -p 8080:8080 --name tourapp --link tourdb:mariadb tourbackend
 4. 최종 확인
    docker ps
 5. http://localhost:8080
