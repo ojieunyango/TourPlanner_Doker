@@ -24,4 +24,14 @@ export default defineConfig({
   base: '/TourPlanner_Doker/',
   // base는 리포지토리명과 동일하게 가져갑니다.
   plugins: [react()],
+  server: {
+        proxy: {
+         
+          "/api": {
+            target: "http://192.168.7.193:8080",
+            changeOrigin: true,
+            secure: false,
+          },
+        },
+      },
 });

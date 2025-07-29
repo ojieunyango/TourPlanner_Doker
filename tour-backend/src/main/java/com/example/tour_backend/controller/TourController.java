@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/tours")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://localhost:5173", originPatterns = "https://ojieunyango.github.io")
 public class TourController {
     
     private final TourService tourService;
