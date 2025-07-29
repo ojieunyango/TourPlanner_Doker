@@ -38,7 +38,7 @@ Docker version 28.3.2, build 578ccf6
 - 확인 명령어
     - docker image ls
 - 컨테이너 실행 명령어
-- docker run --name tourdb -e MYSQL_ROOT_PASSWORD=1234 -e MYSQL_DATABASE=tourdb mariadb
+- docker run --name tourdb -e MYSQL_ROOT_PASSWORD=123456 -e MYSQL_DATABASE=tourdb mariadb
 - 현재까지의 범위가 뭐냐면 DB와 관련된 컨테이너 실행 및 실행한 겁니다
 - run -> 실행 명령어
 - 이상까지가 DB의 실행과 관련이 있습니다.
@@ -149,15 +149,15 @@ mariadb      latest    2bcbaec92bd9   5 weeks ago     455MB
 PS C:\ahngeunsu\car_database\backend>
 ```
 기존 앱의 컨테이너 중지 및 삭제하겠습니다
-docker stop carapp
-docker rm carapp
+docker stop tourapp
+docker rm tourapp
 
 1. 중지된 DB 컨테이너 실행
-   docker start cardb
+   docker start tourdb
 2. 실패한 앱 컨테이너 삭제
-   docker rm carapp
+   docker rm tourapp
 3. 앱 컨테이너 재실행
-   docker run -d -p 8080:8080 --name tourapp --link tourdb:mariadb tourbackend
+   docker run -d -p 8443:8443 --name tourapp --link tourdb:mariadb tourbackend
 4. 최종 확인
    docker ps
 5. http://localhost:8080

@@ -28,7 +28,7 @@ export default defineConfig({
         proxy: {
          
           "/api": {
-            target: "http://192.168.7.193:8080",
+            target: "https://op-colleges-sd-thickness.trycloudflare.com",
             changeOrigin: true,
             secure: false,
           },
