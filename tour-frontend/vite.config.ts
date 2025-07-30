@@ -28,7 +28,7 @@ export default defineConfig({
         proxy: {
          
           "/api": {
-            target:"https://motherboard-registration-labels-runtime.trycloudflare.com",
+            target:"https://motherboard-registration-labels-runtime.trycloudflare.com/api ",
             changeOrigin: true,
             secure: false,
           },
