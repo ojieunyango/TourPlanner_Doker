@@ -28,7 +28,7 @@ export default defineConfig({
         proxy: {
          
           "/api": {
-            target:"https://west-complicated-dash-handhelds.trycloudflare.com",
+            target:"https://phoenix-competitors-acid-future.trycloudflare.com",
             changeOrigin: true,
             secure: false,
           },
