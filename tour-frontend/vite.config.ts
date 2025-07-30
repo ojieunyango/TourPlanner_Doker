@@ -28,7 +28,7 @@ export default defineConfig({
         proxy: {
          
           "/api": {
-            target:"https://guides-articles-columns-sacramento.trycloudflare.com",
+            target:"https://proceedings-penny-landing-integrated.trycloudflare.com",
             changeOrigin: true,
             secure: false,
           },
