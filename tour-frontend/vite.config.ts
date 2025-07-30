@@ -28,7 +28,7 @@ export default defineConfig({
         proxy: {
          
           "/api": {
-            target: "https://op-colleges-sd-thickness.trycloudflare.com",
+            target:"https://massage-symantec-colleges-moderator.trycloudflare.com",
             changeOrigin: true,
             secure: false,
           },
