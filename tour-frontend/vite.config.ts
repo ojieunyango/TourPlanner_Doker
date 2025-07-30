@@ -28,7 +28,7 @@ export default defineConfig({
         proxy: {
          
           "/api": {
-            target:"https://phoenix-competitors-acid-future.trycloudflare.com",
+            target:"https://motherboard-registration-labels-runtime.trycloudflare.com",
             changeOrigin: true,
             secure: false,
           },
