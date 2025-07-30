@@ -28,7 +28,7 @@ export default defineConfig({
         proxy: {
          
           "/api": {
-            target:"https://massage-symantec-colleges-moderator.trycloudflare.com",
+            target:"https://guides-articles-columns-sacramento.trycloudflare.com",
             changeOrigin: true,
             secure: false,
           },
