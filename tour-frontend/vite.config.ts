@@ -28,7 +28,7 @@ export default defineConfig({
         proxy: {
          
           "/api": {
-            target:"https://proceedings-penny-landing-integrated.trycloudflare.com",
+            target:"https://west-complicated-dash-handhelds.trycloudflare.com",
             changeOrigin: true,
             secure: false,
           },
